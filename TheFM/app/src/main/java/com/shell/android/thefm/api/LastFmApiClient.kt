@@ -38,8 +38,9 @@ class LastFmApiClient {
     @Provides
     fun provideClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
-        if (BuildConfig.DEBUG) {
-            interceptor.level = HttpLoggingInterceptor.Level.BODY
+        interceptor.level = when {
+            BuildConfig.DEBUG -> HttpLoggingInterceptor.Level.BODY
+            else -> HttpLoggingInterceptor.Level.NONE
         }
 
         return OkHttpClient.Builder()

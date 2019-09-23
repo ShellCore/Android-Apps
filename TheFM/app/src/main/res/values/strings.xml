@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">The FM</string>
+    <!--Main-->
     <string name="menu_topSongs">Top Canciones</string>
     <string name="menu_topArtist">Top Artistas</string>
+
+    <!--Top Artists-->
+    <string name="service_message_getTopArtists_success">Top artistas descargado con éxito</string>
+    <string name="service_message_getTopArtists_error">Error al descargar los artistas top</string>
 </resources>
