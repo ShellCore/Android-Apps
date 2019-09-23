@@ -30,7 +30,6 @@ class TopArtistsAdapter(var artists: ArrayList<Artist>): RecyclerView.Adapter<To
     class ViewHolder(itemview: View): RecyclerView.ViewHolder(itemview) {
 
         // Components
-        private lateinit var imgArtist: ImageView
         private lateinit var txtArtistName: TextView
         private lateinit var txtCounter: TextView
 
@@ -45,19 +44,9 @@ class TopArtistsAdapter(var artists: ArrayList<Artist>): RecyclerView.Adapter<To
         private fun addArtistInfo() {
             txtArtistName.text = artist.name
             txtCounter.text = artist.playcount
-            loadArtistImage()
-        }
-
-        private fun loadArtistImage() {
-            artist.image.forEach {
-                if (it.size == Image.Size.MEDIUM.value) {
-                    imgArtist.setImage(it.text)
-                }
-            }
         }
 
         private fun initializeComponents() {
-            imgArtist = itemView.findViewById(R.id.imgArtist)
             txtArtistName = itemView.findViewById(R.id.txtArtistName)
             txtCounter = itemView.findViewById(R.id.txtCounter)
         }
