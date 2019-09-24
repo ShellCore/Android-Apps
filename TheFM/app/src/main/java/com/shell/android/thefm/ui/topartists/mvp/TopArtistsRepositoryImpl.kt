@@ -7,6 +7,7 @@ import io.reactivex.Observable
 class TopArtistsRepositoryImpl(
     private val service: LastFmService
 ) : TopArtistsRepository {
+
     override fun getTopArtist(): Observable<Artist> {
         return service.getTopArtist("chart.gettopartists")
             .concatMap {

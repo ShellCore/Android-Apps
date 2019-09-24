@@ -1,10 +1,11 @@
 package com.shell.android.thefm.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.shell.android.thefm.R
 import com.shell.android.thefm.ui.topartists.TopArtistsFragment
+import com.shell.android.thefm.ui.topsongs.TopSongsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,13 +21,14 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_hyped_artist -> {
+                    replaceFragment(TopSongsFragment())
                     true
                 }
                 else -> false
             }
         }
 
-        replaceFragment(TopArtistsFragment())
+        replaceFragment(TopSongsFragment())
     }
 
     private fun replaceFragment(fragment: Fragment) {

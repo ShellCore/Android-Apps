@@ -1,51 +1,50 @@
-package com.shell.android.thefm.ui.topartists.mvp
+package com.shell.android.thefm.ui.topsongs.mvp
 
 import android.util.Log
 import com.shell.android.thefm.R
-import com.shell.android.thefm.api.topartist.response.Artist
+import com.shell.android.thefm.api.topsongs.response.Track
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
-class TopArtistsPresenterImpl(
-    private val interactor: TopArtistsInteractor
-) : TopArtistsPresenter {
+class TopSongsPresenterImpl(
+    private val interactor: TopSongsInteractor
+) : TopSongsPresenter {
 
     companion object {
-        const val TAG = "TopArtistPresenterImpl"
+        const val TAG = "TopSongsPresenterImpl"
     }
 
-    private var view: TopArtistsView? = null
+    private var view: TopSongsView? = null
     private var subscription: Disposable? = null
 
     override fun loadData() {
         subscription = interactor.result()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object: DisposableObserver<Artist>() {
+            .subscribeWith(object: DisposableObserver<Track>() {
                 override fun onComplete() {
-                    view?.showMessage(view?.getContext()!!.getString(R.string.service_message_getTopArtists_success))
+                    view?.showMessage(view?.getContext()!!.getString(R.string.service_message_getTopSongs_success))
                 }
 
-                override fun onNext(artist: Artist) {
-                    view?.updateData(artist)
+                override fun onNext(track: Track) {
+                    view?.updateData(track)
                 }
 
                 override fun onError(e: Throwable) {
                     Log.e(TAG, e.localizedMessage)
-                    view?.showMessage(view?.getContext()!!.getString(R.string.service_message_getTopArtists_error))
+                    view?.showMessage(view?.getContext()!!.getString(R.string.service_message_getTopSongs_error))
                 }
             })
     }
 
     override fun rxJavaUnsubscribe() {
-        if (subscription != null && subscription!!.isDisposed) {
+        if (subscription != null && subscription!!.isDisposed)
             subscription!!.dispose()
-        }
     }
 
-    override fun setView(view: TopArtistsView) {
+    override fun setView(view: TopSongsView) {
         this.view = view
     }
 }

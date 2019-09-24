@@ -7,4 +7,8 @@
     <!--Top Artists-->
     <string name="service_message_getTopArtists_success">Top artistas descargado con éxito</string>
     <string name="service_message_getTopArtists_error">Error al descargar los artistas top</string>
+
+    <!--Top Songs-->
+    <string name="service_message_getTopSongs_error">Error al descargar top de canciones</string>
+    <string name="service_message_getTopSongs_success">Top de canciones descargado con éxito</string>
 </resources>
